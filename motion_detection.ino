@@ -1,59 +1,42 @@
-const int trigPin = 7;
-const int echoPin = 6;
-
-const int pinClose = 2;
-const int pinMiddle = 3;
-const int pinFar = 4;
-
-long duration;
-float distance;
-
-void setup() {
+const int trigPin = 10; 
+const int echoPin =9; 
+float duration, distance;
+void setup() { 
 pinMode(trigPin, OUTPUT);
 pinMode(echoPin, INPUT);
-
-pinMode(pinClose, OUTPUT);
-pinMode(pinMiddle, OUTPUT);
-pinMode(pinFar, OUTPUT);
-
 Serial.begin(9600);
+Serial.println("setup is complete");
+pinMode(2, INPUT); 
+pinMode(3, INPUT); 
+pinMode(4, INPUT); 
 }
-
 void loop() {
-// Send ultrasonic pulse
+ 
 digitalWrite(trigPin, LOW);
 delayMicroseconds(2);
-
+ 
 digitalWrite(trigPin, HIGH);
 delayMicroseconds(10);
-
+ 
 digitalWrite(trigPin, LOW);
-
-// Measure echo duration
+ 
 duration = pulseIn(echoPin, HIGH);
-
-// Calculate distance in centimeters
-distance = duration * 0.0343 / 2;
-
-Serial.print(“Distance: “);
-Serial.print(distance);
-Serial.println(” cm”);
-
-// Reset all outputs
-digitalWrite(pinClose, LOW);
-digitalWrite(pinMiddle, LOW);
-digitalWrite(pinFar, LOW);
-
-// Activate output based on distance
-if (distance < 50) {
-digitalWrite(pinClose, HIGH);
+distance = (duration*.0343) /2;
+Serial.println(distance);
+delay(100);
+if (distance > 150) {
+digitalWrite(4,HIGH);
+} else { 
+digitalWrite(4, LOW);
 }
-else if (distance >= 50 && distance <= 150) {
-digitalWrite(pinMiddle, HIGH);
+ if (distance < 50) {
+digitalWrite(2,HIGH);
+} else { 
+digitalWrite(2, LOW);
 }
-else if (distance > 150) {
-digitalWrite(pinFar, HIGH);
-}
-
-delay(200);
-}
+ 
+ if ((distance >50)&& (distance < 150)) {
+digitalWrite(3,HIGH);
+} else { 
+digitalWrite(3, LOW);
+ }}
