@@ -61,12 +61,12 @@ The circuit connects the ultrasonic sensor to the Arduino and uses output pins t
 
 ⸻
 
-Code
+### Code
 
-The Arduino source code is available in:
 
-motion_detection.ino
+The Arduino source code is available here:
 
+[`motion_detection.ino`](motion_detection.ino)
 ⸻
 
 How to Run
